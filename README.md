@@ -1,3 +1,21 @@
+Команды:
+composer require laravel/ui
+php artisan ui bootstrap
+php artisan ui:auth
+npm install
+npm run dev
+
+
+php artisan migrate
+php artisan migrate:rollback
+php artisan make:model Post -m
+php artisan make:model Category -m
+php artisan make:model Tag -m
+
+git config --system core.autocrlf false
+git config --global core.autocrlf false
+git config --local core.autocrlf false
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
