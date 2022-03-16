@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('content');
             $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             $table->index('category_id', 'post_category_idx');
             $table->foreign('category_id', 'post_category_fk')->on('categories')->references('id');
