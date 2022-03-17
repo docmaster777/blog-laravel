@@ -29,7 +29,8 @@
                     <form action="{{ route('admin.post.store') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">
-                            <input value="{{ old('title') }}" name="title" type="text" class="form-control" placeholder="Название поста">
+                            <input value="{{ old('title') }}" name="title" type="text" class="form-control"
+                                   placeholder="Название поста">
                             @error('title')
                             <div class="text-danger">Это поле обязательно для заполнения</div>
                             @enderror
@@ -45,12 +46,19 @@
                             <label for="exampleInputFile">Добавить превью</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="preview_image" id="exampleInputFile">
+                                    <input type="file" class="custom-file-input" name="preview_image"
+                                           id="exampleInputFile">
                                     <label class="custom-file-label" for="exampleInputFile">Выберите изображение</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text">Загрузка</span>
                                 </div>
+                                <div>
+                                    @error('preview_image')
+                                    <div class="text-danger">Это поле обязательно для заполнения</div>
+                                    @enderror
+                                </div>
+
                             </div>
                         </div>
 
@@ -58,13 +66,34 @@
                             <label for="exampleInputFile">Добавить главное изображение</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" name="main_image" id="exampleInputFile">
+                                    <input type="file" class="custom-file-input" name="main_image"
+                                           id="exampleInputFile">
                                     <label class="custom-file-label" for="exampleInputFile">Выберите изображение</label>
                                 </div>
                                 <div class="input-group-append">
                                     <span class="input-group-text">Загрузка</span>
                                 </div>
+                                <div>
+                                    @error('main_image')
+                                    <div class="text-danger">Это поле обязательно для заполнения</div>
+                                    @enderror
+                                </div>
+
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Выберите категорию</label>
+                            <select name="category_id" class="custom-select">
+                                @foreach($categories as $category)
+                                    <option
+                                        {{ $category->id == old('category_id') ? 'selected' : ''  }}
+                                        value="{{$category->id}}">{{$category->title}}</option>
+                                @endforeach
+                            </select>
+                            @error('category_id')
+                            <div class="text-danger">Это поле обязательно для заполнения</div>
+                            @enderror
                         </div>
 
                         <input type="submit" class="btn btn-primary" value="Добавить">
