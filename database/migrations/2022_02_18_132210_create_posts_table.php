@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('title');
             $table->text('content');
             $table->unsignedBigInteger('category_id')->nullable();
+            $table->string('preview_image');
+            $table->string('main_image');
             $table->timestamps();
             $table->softDeletes();
 
