@@ -13,6 +13,8 @@ php artisan make:model Post -m
 php artisan make:model Category -m
 php artisan make:model Tag -m
 
+php artisan storage:link
+
 git config --system core.autocrlf false
 git config --global core.autocrlf false
 git config --local core.autocrlf false

@@ -32,15 +32,14 @@ class PostController extends Controller
             $data = $request->validated();
             $tag_ids = $data['tag_ids'];
             unset($data['tag_ids']);
-            $data['preview_image'] = Storage::put('/images', $data['preview_image']);
-            $data['main_image'] = Storage::put('/images', $data['main_image']);
+            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+            $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
 
             $post = Post::firstOrCreate($data);
             $post->tags()->attach($tag_ids);
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             abort('404');
         }
-
 
         return redirect()->route('admin.post.index');
     }
@@ -52,13 +51,32 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        return view('admin.post.edit', compact('post'));
+
+        $categories = Category::all();
+        $tags = Tag::all();
+
+        return view('admin.post.edit', compact('post', 'categories', 'tags'));
     }
 
     public function update(UpdateRequest $request, Post $post)
     {
         $data = $request->validated();
+
+        $tag_ids = $data['tag_ids'];
+        unset($data['tag_ids']);
+
+
+        if (isset($data['preview_image'])) {
+            $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
+        }
+        if (isset($data['main_image'])) {
+            $data['main_image'] = Storage::disk('public')->put('/images', $data['main_image']);
+        }
+
         $post->update($data);
+
+        $post->tags()->sync($tag_ids);
+
 
         return redirect()->route('admin.post.show', $post->id);
     }
