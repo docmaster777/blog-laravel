@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="{{ asset('') }}plugins/fontawesome-free/css/all.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- Tempusdominus Bootstrap 4 -->
     <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- iCheck -->
@@ -25,6 +28,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/daterangepicker/daterangepicker.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('plugins/summernote/summernote-bs4.min.css') }}">
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -99,6 +103,9 @@
 <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
 <!-- bs-custom-file-input -->
 <script src="{{ asset('plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+<!-- Select2 -->
+<script src="{{ asset('plugins/select2/js/select2.full.min.js') }}"></script>
+
 <script>
     $(document).ready(function() {
         $('#summernote').summernote({
@@ -116,6 +123,8 @@
         $(function () {
             bsCustomFileInput.init();
         });
+        //Initialize Select2 Elements
+        $('.select2').select2()
     });
 
 
